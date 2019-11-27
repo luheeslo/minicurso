@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api:
+    build: ./pokeset/
+    ports:
+      - "3000:3000"
+    command:
+      json-server --host 0.0.0.0 pokedex.json
+  web:
+    build: ./app/
+    ports:
+      - "5000:5000"
+    command:
+      flask run --host 0.0.0.0
+    environment:
+      - DATABASE_URI=http://api:3000/pokemon
+    depends_on:
+      - api
