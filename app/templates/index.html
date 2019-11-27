@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<ul>
+    {% for pkm in pokemons %}
+    <li><a href="{{ url_for('get_pokemon', id=pkm['id']) }}">{{ pkm['name']['english'] }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

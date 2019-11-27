@@ -218,5 +218,5 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
-
+venv/
 # End of https://www.gitignore.io/api/node,python,vim

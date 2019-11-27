@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+                {% if pokemon['id']|string|length == 1 %}
+                    {% set id = '00' + pokemon['id']|string %}
+                {% elif pokemon['id']|string|length == 2 %}
+                    {% set id = '0' + pokemon['id']|string %}
+                {% else %}
+                    {% set id = pokemon['id']|string %}
+                {% endif %}
+                    <img src="{{ url_for('static', filename='images/' + id + '.png')}}" class="img-responsive" alt="">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+                        <h2>{{ pokemon['name']['english'] }}</h2>
+					</div>
+				</div>
+                <br>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+                    <button type="button" class="btn btn-default btn-sm">{{ pokemon['type'][0] }}</button>
+                    {% if pokemon['type']|length == 2 %}
+                    <button type="button" class="btn btn-default btn-sm">{{ pokemon['type'][1] }}</button>
+                    {% endif %}
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+						    <a href="#">
+                                <span class="label label-primary">HP</span>: {{ pokemon['base']['HP'] }}
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<span class="label label-success">Attack</span>: {{ pokemon['base']['Attack'] }}
+
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<span class="label label-default">Defense</span>: {{ pokemon['base']['Defense'] }}
+
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<span class="label label-info">Sp. Attack</span>: {{ pokemon['base']['Sp. Attack'] }}
+
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<span class="label label-warning">Sp. Defense</span>: {{ pokemon['base']['Sp. Defense'] }}
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<span class="label label-danger">Speed</span>: {{ pokemon['base']['Speed'] }}
+
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+	</div>
+{% endblock %}
